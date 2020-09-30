@@ -14,7 +14,7 @@ const resolvers = {
     },
     products: async (info, args) => {
       const { first = null, after = 0 } = args;
-      let query = knex("products").offset(after);
+      let query = knex("products").offset(after).where({ shop: "polynesianworld" });
       if (first) {
         query.limit(first);
       }
@@ -26,13 +26,13 @@ const resolvers = {
   Product: {
     collections: (parent) => {
       const collectionLoader = new DataLoader(async (ids) => {
-        const collectons = await knex("collections")
-          .join("collects", "collects.collection_id", "=", "collections.id")
-          .joinRaw(
-            `inner join "products" on "products".id = ANY(?) AND "collects".product_id = "products".id`,
-            [ids]
-          );
-        return Promise.resolve(collectons);
+        const cond = knex.raw(`product_id = ANY(?)`, [ids]);
+        const collects = await knex("collects").select("collection_id").where(cond);
+        const collectonIds = collects.map((item) => item.collection_id);
+        const collections = await knex("collections").where(
+          knex.raw(`id = ANY(?)`, [collectonIds])
+        );
+        return Promise.resolve(collections);
       });
       return collectionLoader.load(parent.id);
     },
