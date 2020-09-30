@@ -6,17 +6,32 @@ schema {
 type Query {
   hello: String
   users: [User]
+  products: [Product]
+  product(id: String): Product
 }
 
 type Mutation {
   hi: String
 }
 
-type User {
+interface Node {
+  id: String!
+}
+
+type User implements Node {
   id: String
   name: String
   role: String
   phonenum: String
   providers: String
   profile: String
+}
+
+type Product implements Node {
+  id: String
+  collections: Collection
+}
+
+type Collection implements Node {
+  id: String
 }

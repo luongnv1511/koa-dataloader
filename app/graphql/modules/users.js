@@ -18,6 +18,11 @@ const resolvers = {
       return "hello";
     },
   },
+  User: {
+    name: (parent) => {
+      return parent.name;
+    },
+  },
 };
 
 module.exports = {
