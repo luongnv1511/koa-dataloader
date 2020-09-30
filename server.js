@@ -4,6 +4,7 @@ const json = require("koa-json");
 const bodyParser = require("koa-bodyparser");
 const cors = require("@koa/cors");
 
+const config = require("./config");
 const { modules } = require("./app/routes");
 
 (async () => {
@@ -24,7 +25,7 @@ const { modules } = require("./app/routes");
     console.error(err);
   });
 
-  const port = 8080;
+  const port = config.server.port;
   console.log(`listening on port ${port}`);
   app.listen(port);
 })();

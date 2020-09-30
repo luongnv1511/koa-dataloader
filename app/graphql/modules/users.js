@@ -8,7 +8,11 @@ const resolvers = {
       return "hello";
     },
   },
-  Mutation: {},
+  Mutation: {
+    hi: () => {
+      return "hello";
+    },
+  },
 };
 
 module.exports = {
