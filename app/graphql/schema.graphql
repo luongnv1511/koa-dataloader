@@ -5,8 +5,8 @@ schema {
 
 type Query {
   hello: String
-  users: [User]
-  products: [Product]
+  users(first: Int, after: String): UserConnection
+  products(first: Int, after: String): ProductConnection
   product(id: String): Product
 }
 
@@ -18,8 +18,26 @@ interface Node {
   id: String!
 }
 
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type UserConnection {
+  edges: [UserEdge]
+  pageInfo: PageInfo!
+  total: Int
+}
+
+type UserEdge {
+  cursor: String!
+  node: User
+}
+
 type User implements Node {
-  id: String
+  id: String!
   name: String
   role: String
   phonenum: String
@@ -27,11 +45,22 @@ type User implements Node {
   profile: String
 }
 
+type ProductConnection {
+  edges: [ProductEdge]
+  pageInfo: PageInfo!
+  total: Int
+}
+
+type ProductEdge {
+  cursor: String!
+  node: Product
+}
+
 type Product implements Node {
-  id: String
+  id: String!
   collections: Collection
 }
 
 type Collection implements Node {
-  id: String
+  id: String!
 }

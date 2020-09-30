@@ -1,3 +1,5 @@
+const { connectionFromArray } = require("graphql-relay");
+
 const { knex } = require("../../db");
 
 const jmDefs = {
@@ -9,8 +11,14 @@ const resolvers = {
     hello: () => {
       return "hello";
     },
-    users: async () => {
-      return await knex("users");
+    users: async (info, args) => {
+      const { first = null, after = 0 } = args;
+      let query = await knex("users").offset(after);
+      if (first) {
+        query.limit(first);
+      }
+      const users = await query;
+      return connectionFromArray(users, args);
     },
   },
   Mutation: {
