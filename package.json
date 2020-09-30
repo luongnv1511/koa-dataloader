@@ -1,0 +1,30 @@
+{
+  "name": "learn-dataloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "author": "Rahman Fadhil <rhmnfadhil@gmail.com> (https://rahmanfadhil.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "dataloader": "^2.0.0",
+    "eslint": "^7.10.0",
+    "graphql": "^0.13.2",
+    "graphql-playground-middleware-koa": "^1.6.20",
+    "graphql-tools": "^4.0.6",
+    "graphql-upload": "^11.0.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-graphql": "^0.8.0",
+    "koa-json": "^2.0.2",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^9.4.0",
+    "lodash": "^4.17.20",
+    "nodemon": "^2.0.4",
+    "require-text": "0.0.1"
+  }
+}
