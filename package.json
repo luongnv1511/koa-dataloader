@@ -27,6 +27,7 @@
     "koa-router": "^9.4.0",
     "lodash": "^4.17.20",
     "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
     "require-text": "0.0.1"
   }
 }

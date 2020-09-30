@@ -8,14 +8,14 @@ const config = require("./config");
 const { modules } = require("./app/routes");
 
 (async () => {
-  let app = new Koa();
+  const app = new Koa();
   app.use(cors({ origin: "*" }));
   app.use(json());
   app.use(bodyParser());
 
   // attach routes
-  let router = new Router();
-  for (let mod of modules) {
+  const router = new Router();
+  for (const mod of modules) {
     await mod.attach(router, app);
   }
 

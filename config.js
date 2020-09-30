@@ -11,9 +11,9 @@ const server = {
   host: env.SERVER_HOST || "localhost",
 };
 
-let protocol = server.secure ? "https" : "http";
-let port = server.port == 80 || server.port == 443 ? "" : `:${server.port}`;
-let serverURL = `${protocol}://${server.host}${port}`;
+const protocol = server.secure ? "https" : "http";
+const port = server.port == 80 || server.port == 443 ? "" : `:${server.port}`;
+const serverURL = `${protocol}://${server.host}${port}`;
 server.url = env.SERVER_URL || serverURL;
 
 module.exports = {

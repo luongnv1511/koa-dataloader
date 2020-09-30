@@ -1,5 +1,4 @@
 const knex = require("./knex");
-
 const users = require("./users");
 
 module.exports = {

@@ -5,8 +5,18 @@ schema {
 
 type Query {
   hello: String
+  users: [User]
 }
 
 type Mutation {
   hi: String
+}
+
+type User {
+  id: String
+  name: String
+  role: String
+  phonenum: String
+  providers: String
+  profile: String
 }
