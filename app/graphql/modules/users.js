@@ -2,10 +2,6 @@ const { connectionFromArray } = require("graphql-relay");
 
 const { knex } = require("../../db");
 
-const jmDefs = {
-  Query: {},
-};
-
 const resolvers = {
   Query: {
     hello: () => {
@@ -35,5 +31,4 @@ const resolvers = {
 
 module.exports = {
   resolvers,
-  jmDefs,
 };
