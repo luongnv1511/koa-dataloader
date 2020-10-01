@@ -1,10 +1,11 @@
 const mount = require("koa-mount");
 const Koa = require("koa");
 const koaPlayground = require("graphql-playground-middleware-koa").default;
-
 const { graphqlUploadKoa } = require("graphql-upload");
 const graphqlHTTP = require("koa-graphql");
+
 const schema = require("../graphql");
+const { loaders } = require("../base/loader");
 
 const createGraphqlApp = (schema) => {
   const app = new Koa();
@@ -12,6 +13,9 @@ const createGraphqlApp = (schema) => {
     graphqlHTTP({
       schema,
       graphiql: false,
+      context: () => ({
+        loaders: loaders(),
+      }),
     })
   );
   return app;

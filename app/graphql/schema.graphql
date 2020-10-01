@@ -58,7 +58,18 @@ type ProductEdge {
 
 type Product implements Node {
   id: String!
-  collections: Collection
+  collection: Collection
+}
+
+type CollectionConnection {
+  edges: [CollectionEdge]
+  pageInfo: PageInfo!
+  total: Int
+}
+
+type CollectionEdge {
+  cursor: String!
+  node: Collection
 }
 
 type Collection implements Node {

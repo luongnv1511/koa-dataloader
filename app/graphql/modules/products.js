@@ -25,19 +25,8 @@ const resolvers = {
   },
   Mutation: {},
   Product: {
-    collections: (parent) => {
-      const collectionLoader = new DataLoader(async (ids) => {
-        const cond = knex.raw(`product_id = ANY(?)`, [ids]);
-        const collects = await knex("collects")
-          .select("collection_id")
-          .where(cond);
-        const collectonIds = collects.map((item) => item.collection_id);
-        const collections = await knex("collections")
-          .where(knex.raw(`id = ANY(?)`, [collectonIds]))
-          .first();
-        return Promise.resolve([collections]);
-      });
-      return collectionLoader.load(parent.id);
+    collection: async (parent, info, ctx) => {
+      return await ctx().loaders.getCollectionsByProductId.load(parent.id);
     },
   },
 };
