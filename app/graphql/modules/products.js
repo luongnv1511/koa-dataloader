@@ -29,10 +29,10 @@ const resolvers = {
         const cond = knex.raw(`product_id = ANY(?)`, [ids]);
         const collects = await knex("collects").select("collection_id").where(cond);
         const collectonIds = collects.map((item) => item.collection_id);
-        const collections = await knex("collections").where(
-          knex.raw(`id = ANY(?)`, [collectonIds])
-        );
-        return Promise.resolve(collections);
+        const collections = await knex("collections")
+          .where(knex.raw(`id = ANY(?)`, [collectonIds]))
+          .first();
+        return Promise.resolve([collections]);
       });
       return collectionLoader.load(parent.id);
     },
