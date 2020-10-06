@@ -4,6 +4,7 @@ schema {
 }
 
 type Query {
+  node(id: ID!): Node
   hello: String
   users(first: Int, after: String): UserConnection
   products(first: Int, after: String): ProductConnection
@@ -11,7 +12,7 @@ type Query {
 }
 
 type Mutation {
-  hi: String
+  hi(id: Int): String
 }
 
 interface Node {
@@ -58,7 +59,7 @@ type ProductEdge {
 
 type Product implements Node {
   id: String!
-  collection: Collection
+  collections: [Collection]
 }
 
 type CollectionConnection {

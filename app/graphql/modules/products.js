@@ -1,5 +1,4 @@
 const { connectionFromArray } = require("graphql-relay");
-const DataLoader = require("dataloader");
 
 const { knex } = require("../../db");
 
@@ -25,8 +24,8 @@ const resolvers = {
   },
   Mutation: {},
   Product: {
-    collection: async (parent, info, ctx) => {
-      return await ctx().loaders.getCollectionsByProductId.load(parent.id);
+    collections: async (parent, info, ctx) => {
+      return await ctx().loaders.collectionLoader.load(parent.id);
     },
   },
 };

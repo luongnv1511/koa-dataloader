@@ -7,6 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server"
   },
+  "nodemonConfig": {
+    "ext": "js, graphql, json",
+    "ignore": [
+      "node_modules",
+      "*.test.js",
+      "migrations/*"
+    ]
+  },
   "author": "Rahman Fadhil <rhmnfadhil@gmail.com> (https://rahmanfadhil.com/)",
   "license": "MIT",
   "dependencies": {
@@ -19,6 +27,8 @@
     "graphql-relay": "^0.6.0",
     "graphql-tools": "^4.0.6",
     "graphql-upload": "^11.0.0",
+    "join-monster": "^2.1.2",
+    "js-base64": "^3.5.2",
     "knex": "^0.21.6",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
